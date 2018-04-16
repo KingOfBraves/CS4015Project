@@ -1,4 +1,4 @@
-public class GameView implements GameObserver 
+public abstract class GameView implements GameObserver 
 {
    private GameLogic model;
    public GameView() 
@@ -7,21 +7,7 @@ public class GameView implements GameObserver
          model.attach(this);
    }
    
-   private void displayGameBoard(GameBoardView gameBoard) 
-   {
-         for (int row = 0; row < 3; row++) {
-               for (int col = 0; col < 3; col++) {
-                     int playerId = gameBoard.getPlayer(row, col);
-                     switch (playerId) {
-                              case 0: System.out.print("*"); break; 
-                              case 1: System.out.print("X"); break; 
-                              case 2: System.out.print("O"); break; 
-                     }
-                     System.out.print(" ");
-               }
-               System.out.println();
-         }
-   }
+   protected abstract void displayGameBoard(GameBoardView gameBoard);
 
    public void displayMessage(String message) 
    {
