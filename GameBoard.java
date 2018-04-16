@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class GameBoard implements GameBoardView 
 {
    private int[][] board;
@@ -19,6 +21,26 @@ public class GameBoard implements GameBoardView
    {
          board[row][col] = player;
    }
+   
+	/** 
+	 * Creates a new memento for undo use
+	 * @returns return GameMemento
+	 */
+	public GameMemento createMemento() {
+		GameMemento gm = new GameMemento();
+		int[][] copiedBoard = board.clone();
+		gm.setState(copiedBoard);
+		return gm;
+	}
+
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void setMemento(GameMemento gm) {
+		this.board = gm.getState();
+	}
 }
 
  

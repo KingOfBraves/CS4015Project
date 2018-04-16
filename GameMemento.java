@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 
 public class GameMemento {
-	public void getMemento() {
-		
+	private int[][] board;
+	public int[][] getState() {
+		return board;
 	}
-	public void setMemento() {
-		
+	public void setState(int[][] state) {
+		this.board = state;
 	}
 }

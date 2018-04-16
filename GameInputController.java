@@ -8,6 +8,7 @@ public class GameInputController implements GameObserver
    private boolean gameEnd = false;
    private GameLogic model;
    private GameView view;
+   private Stack commandStack = new Stack();
 
    public GameInputController(GameView view) 
    {
@@ -34,7 +35,9 @@ public class GameInputController implements GameObserver
                   case GameStatus.illegalMove: 
                         view.displayMessage("Illegal move. Input again.");
                         getUserMove();
-                        model.makeMove(inputRow, inputCol, currentPlayer);
+    					GameCommand gc = new PlaceCommand(inputRow, inputCol, currentPlayer);
+    					gc.execute();
+    					commandStack.push(gc);
                         break;
                   case GameStatus.gameContinue:
                   currentPlayer = currentPlayer==1?2:1;
