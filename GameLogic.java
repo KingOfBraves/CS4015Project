@@ -13,7 +13,7 @@ public class GameLogic extends GameSubject
     * Returns a singleton of GameLogic
     * @returns a GameLogic singleton
     */
-   public GameLogic getInstance() {
+   public static GameLogic getInstance() {
 	   if (instance == null) {
 		   instance = new GameLogic();
 		   instance.setupGameBoard();

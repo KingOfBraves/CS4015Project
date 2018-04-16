@@ -3,10 +3,9 @@ public class TicTacToeGame
 {
    public static void main(String[] args) 
    {
-         GameLogic model = new GameLogic();
-         GameView view = new GameView(model);
+         GameView view = new GameView();
          GameInputController controller = 
-            new GameInputController(view, model);
+            new GameInputController(view);
          controller.control();
    }
 }

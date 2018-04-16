@@ -9,10 +9,10 @@ public class GameInputController implements GameObserver
    private GameLogic model;
    private GameView view;
 
-   public GameInputController(GameView view, GameLogic model) 
+   public GameInputController(GameView view) 
    {
          this.view = view;
-         this.model = model;
+         this.model = GameLogic.getInstance();
          model.attach(this);
    }
 

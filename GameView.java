@@ -1,9 +1,9 @@
 public class GameView implements GameObserver 
 {
    private GameLogic model;
-   public GameView(GameLogic model) 
+   public GameView() 
    {
-         this.model = model;
+         this.model = GameLogic.getInstance();
          model.attach(this);
    }
    
