@@ -3,6 +3,8 @@ public class GameReferee
    private GameBoardView gameBoard;
    public int checkLegalMove(int row, int col, int player) 
    {
+	   	 if(row == 3)
+	   		 return 5;
          return gameBoard.getPlayer(row, col);
    }
    

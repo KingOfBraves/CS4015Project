@@ -24,8 +24,11 @@ public class PlaceCommand extends GameCommand{
 
 	@Override
 	public void unexecute() {
-		// TODO Auto-generated method stub
-		
+		gb.setMemento(gMemento);
+	}
+	
+	public void printContents() {
+		System.out.println(currentPlayer + ": " + inputRow + ", " + inputCol);
 	}
 
 }

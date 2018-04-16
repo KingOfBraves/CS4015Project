@@ -6,6 +6,7 @@ public class GameInputController implements GameObserver
    private int inputRow;
    private int inputCol;
    private boolean gameEnd = false;
+   private boolean undo = false; // control variable for when user selects undo
    private GameLogic model;
    private GameView view;
    private Stack commandStack = new Stack();
@@ -24,7 +25,20 @@ public class GameInputController implements GameObserver
          while (!gameEnd) {
                view.displayMessage("Player " + currentPlayer + "'s turn.");
                getUserMove();
-               model.makeMove(inputRow, inputCol, currentPlayer);
+               if (!undo) {
+            	   GameCommand gc = new PlaceCommand(inputRow, inputCol, currentPlayer);
+                   gc.execute();
+                   commandStack.push(gc);
+               }
+               else if (undo) {
+            	   model.setStateUndo();
+            	   view.displayMessage("Undoing last move");
+            	   GameCommand gc = commandStack.pop();
+            	   gc.unexecute();
+            	   currentPlayer = currentPlayer==1?2:1;
+            	   undo = false;
+               }
+               commandStack.printStack();
          }
    }
 
@@ -40,8 +54,8 @@ public class GameInputController implements GameObserver
     					commandStack.push(gc);
                         break;
                   case GameStatus.gameContinue:
-                  currentPlayer = currentPlayer==1?2:1;
-                  break;
+                	  currentPlayer = currentPlayer==1?2:1;
+                	  break;
               default: 
                   gameEnd = true;
          }
@@ -51,8 +65,12 @@ public class GameInputController implements GameObserver
    {
          Scanner scanner = new Scanner(System.in);
          while (true) {
-                view.displayMessage("Enter row number (0-2): ");
+                view.displayMessage("Enter row number (0-2), or 3 to undo last move: ");
                 inputRow = scanner.nextInt();
+                if (inputRow == 3) {
+                	undo = true;
+                	break;
+                }
                 view.displayMessage("Enter column number (0-2): ");
                 inputCol = scanner.nextInt();
                 if (inputRow >= 0 && inputRow < 3 && inputCol >= 0 

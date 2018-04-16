@@ -1,11 +1,15 @@
-import java.util.ArrayList;
 
 public class GameMemento {
-	private int[][] board;
+	private int[][] board = new int[3][3];
 	public int[][] getState() {
 		return board;
 	}
 	public void setState(int[][] state) {
-		this.board = state;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				board[i][j] = state[i][j];
+			}
+		}
+		
 	}
 }

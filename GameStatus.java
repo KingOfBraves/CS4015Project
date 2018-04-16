@@ -5,4 +5,5 @@ public interface GameStatus
    public static int player2Win = 2;
    public static int tie = 3;
    public static int illegalMove = 4;
+   public static int undoMove = 5;
 }

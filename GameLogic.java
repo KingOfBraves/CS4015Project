@@ -46,6 +46,10 @@ public class GameLogic extends GameSubject
     return gameBoard;
    }
 
+   public void setStateUndo() {
+	   gameStatus = GameStatus.undoMove;
+   }
+   
    public int getGameStatus() 
    {
     return gameStatus;

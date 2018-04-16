@@ -28,8 +28,7 @@ public class GameBoard implements GameBoardView
 	 */
 	public GameMemento createMemento() {
 		GameMemento gm = new GameMemento();
-		int[][] copiedBoard = board.clone();
-		gm.setState(copiedBoard);
+		gm.setState(board);
 		return gm;
 	}
 
@@ -39,7 +38,12 @@ public class GameBoard implements GameBoardView
 	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setMemento(GameMemento gm) {
-		this.board = gm.getState();
+		int[][] copiedBoard = gm.getState();
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				board[i][j] = copiedBoard[i][j];
+			}
+		}
 	}
 }
 
