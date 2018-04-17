@@ -8,3 +8,5 @@ Tic Tac Toe game made for my Design Patterns and Software Architecture class
 - Memento
 - Factory Method
 - Decorator
+- Iterator
+- Memento

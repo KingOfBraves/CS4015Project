@@ -20,55 +20,34 @@ public class GameReferee
 
    private int checkWinning() 
    {
-	   BoardIterator iter;
-	   BoardVisitor visitor;
+	   int results = 0;
 	   
 		 for (int cur = 0; cur < 3; cur++) {
-			 // Checking current row
-			 iter = new RowIterator(gameBoard, cur);
-			 visitor = new WinVisitor();
-			 while(!iter.isDone()) {
-				 visitor.visit(iter.getElement());
-				 iter.next();
-			 }
-			 int results = visitor.getResult();
+			 results = performIteratorChecks(new RowIterator(gameBoard, cur), new WinVisitor());
 			 if (results != 0)
 				 return results;
-			 // Checking current column
-			 iter = new ColumnIterator(gameBoard, cur);
-			 visitor = new WinVisitor();
-			 while(!iter.isDone()) {
-				 visitor.visit(iter.getElement());
-				 iter.next();
-			 }
-			 results = visitor.getResult();
+			results = performIteratorChecks(new ColumnIterator(gameBoard, cur), new WinVisitor());
 			 if (results != 0)
 				 return results;
 		 }
 		 
-		 iter = new DiagonalIterator(gameBoard, 0);
-		 visitor = new WinVisitor();
-		 while(!iter.isDone()) {
-			 visitor.visit(iter.getElement());
-			 iter.next();
-		 }
-		 int results = visitor.getResult();
+		 results = performIteratorChecks(new DiagonalIterator(gameBoard, 0), new WinVisitor());
 		 if (results != 0)
 			 return results;
 		 
-		 iter = new DiagonalIterator(gameBoard, 2);
-		 visitor = new WinVisitor();
-		 while(!iter.isDone()) {
-			 visitor.visit(iter.getElement());
-			 iter.next();
-		 }
-		 results = visitor.getResult();
+		 results = performIteratorChecks(new DiagonalIterator(gameBoard, 2), new WinVisitor());
 		 if (results != 0)
 			 return results;
          return 0;
    }
 
-   
+   private int performIteratorChecks(BoardIterator iter, BoardVisitor visitor) {
+	   while(!iter.isDone()) {
+			 visitor.visit(iter.getElement());
+			 iter.next();
+		 }
+		 return visitor.getResult();
+   }
 
    
 
