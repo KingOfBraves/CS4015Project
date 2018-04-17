@@ -1,5 +1,5 @@
 
-public class PlaceCommand extends GameCommand{
+public class PlaceCommand extends GameCommand implements Cloneable{
 
 	private GameBoard gb;
 	private int inputRow;
@@ -29,6 +29,11 @@ public class PlaceCommand extends GameCommand{
 	
 	public void printContents() {
 		System.out.println(currentPlayer + ": " + inputRow + ", " + inputCol);
+	}
+
+	@Override
+	public GameCommand clone() throws CloneNotSupportedException {
+		return (PlaceCommand) super.clone();
 	}
 
 }

@@ -20,36 +20,51 @@ public class GameReferee
 
    private int checkWinning() 
    {
-         for (int row = 0; row < 3; row++) {
-               int playerId = gameBoard.getPlayer(row, 0);
-               int count = 1;
-               for (int col = 1; col < 3; col++ ) {
-                     if (gameBoard.getPlayer(row, col) == 
-                      playerId) count++;
-               }
-               if (count == 3 && playerId != 0) return playerId;
-         }
-         for (int col = 0; col < 3; col++) {
-               int playerId = gameBoard.getPlayer(0, col);
-               int count = 1;
-               for (int row = 1; row < 3; row++ ) {
-                     if (gameBoard.getPlayer(row, col) == 
-                      playerId) count++;
-               }
-               if (count == 3 && playerId != 0) return playerId;
-         }
-         int playerId = gameBoard.getPlayer(0, 0);
-         int count = 1;
-         for (int row = 1; row < 3; row++) {
-               if (gameBoard.getPlayer(row, row) == playerId) count++;
-         }
-         if (count == 3 && playerId != 0) return playerId;
-         playerId = gameBoard.getPlayer(0, 2);
-         count = 1;
-         for (int row = 1; row < 3; row++) {
-               if (gameBoard.getPlayer(row, 2-row) == playerId) count++;
-         }
-         if (count == 3 && playerId != 0) return playerId;
+	   BoardIterator iter;
+	   BoardVisitor visitor;
+	   
+		 for (int cur = 0; cur < 3; cur++) {
+			 // Checking current row
+			 iter = new RowIterator(gameBoard, cur);
+			 visitor = new WinVisitor();
+			 while(!iter.isDone()) {
+				 visitor.visit(iter.getElement());
+				 iter.next();
+			 }
+			 int results = visitor.getResult();
+			 if (results != 0)
+				 return results;
+			 // Checking current column
+			 iter = new ColumnIterator(gameBoard, cur);
+			 visitor = new WinVisitor();
+			 while(!iter.isDone()) {
+				 visitor.visit(iter.getElement());
+				 iter.next();
+			 }
+			 results = visitor.getResult();
+			 if (results != 0)
+				 return results;
+		 }
+		 
+		 iter = new DiagonalIterator(gameBoard, 0);
+		 visitor = new WinVisitor();
+		 while(!iter.isDone()) {
+			 visitor.visit(iter.getElement());
+			 iter.next();
+		 }
+		 int results = visitor.getResult();
+		 if (results != 0)
+			 return results;
+		 
+		 iter = new DiagonalIterator(gameBoard, 2);
+		 visitor = new WinVisitor();
+		 while(!iter.isDone()) {
+			 visitor.visit(iter.getElement());
+			 iter.next();
+		 }
+		 results = visitor.getResult();
+		 if (results != 0)
+			 return results;
          return 0;
    }
 
