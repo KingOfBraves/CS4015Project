@@ -10,3 +10,4 @@ Tic Tac Toe game made for my Design Patterns and Software Architecture class
 - Decorator
 - Iterator
 - Memento
+- Chain of Responsibility
