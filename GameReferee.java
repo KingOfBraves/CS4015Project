@@ -20,36 +20,16 @@ public class GameReferee
 
    private int checkWinning() 
    {
-	   int results = 0;
+	   // Setting up handlers for chain of responsibility
+	   WinCheckHandler rowHandler = new WinCheckHandlerRow();
+	   WinCheckHandler colHandler = new WinCheckHandlerColumn();
+	   WinCheckHandler diagHandler = new WinCheckHandlerDiagonal();
 	   
-		 for (int cur = 0; cur < 3; cur++) {
-			 results = performIteratorChecks(new RowIterator(gameBoard, cur), new WinVisitor());
-			 if (results != 0)
-				 return results;
-			results = performIteratorChecks(new ColumnIterator(gameBoard, cur), new WinVisitor());
-			 if (results != 0)
-				 return results;
-		 }
-		 
-		 results = performIteratorChecks(new DiagonalIterator(gameBoard, 0), new WinVisitor());
-		 if (results != 0)
-			 return results;
-		 
-		 results = performIteratorChecks(new DiagonalIterator(gameBoard, 2), new WinVisitor());
-		 if (results != 0)
-			 return results;
-         return 0;
+	   rowHandler.setSuccessor(colHandler);
+	   colHandler.setSuccessor(diagHandler);
+	   
+	   return rowHandler.handleRequest(new CheckRequest(gameBoard));
    }
-
-   private int performIteratorChecks(BoardIterator iter, BoardVisitor visitor) {
-	   while(!iter.isDone()) {
-			 visitor.visit(iter.getElement());
-			 iter.next();
-		 }
-		 return visitor.getResult();
-   }
-
-   
 
    private boolean checkTie() 
 
