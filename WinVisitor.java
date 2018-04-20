@@ -11,7 +11,6 @@ public class WinVisitor implements BoardVisitor {
 		if (player == playerId) {
 			count++;
 		}
-		System.out.println(playerId + ": " + count);
 	}
 
 	@Override
