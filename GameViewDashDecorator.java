@@ -1,5 +1,6 @@
 
 public class GameViewDashDecorator extends GameView{
+	
 	protected void displayGameBoard(GameBoardView gameBoard) 
 	   {
 	         for (int row = 0; row < 3; row++) {
