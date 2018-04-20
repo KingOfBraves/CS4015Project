@@ -25,7 +25,8 @@ public class GameLogic extends GameSubject
     * sets up the singleton with the required steps from the old constructor
     */
    private void setupGameBoard() {
-	   gameBoard = new GameBoard();
+	   GameBoardFactory factory = new GameBoardFactory();
+	   gameBoard = (GameBoard) factory.createBoard(1);
        referee = new GameReferee(gameBoard);
    }
 
