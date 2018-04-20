@@ -5,9 +5,9 @@ public class PlusBorder extends GameView{
 		this.observer = observer;
 	}
 	
-	public void displayGameBoard(GameBoardView board) {
+	public void displayGameBoard() {
 		System.out.println("+++++");
-		observer.displayGameBoard(board);
+		observer.displayGameBoard();
 		System.out.println("+++++");
 	}
 }

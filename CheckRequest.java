@@ -1,8 +1,9 @@
 
 public class CheckRequest {
 	private GameBoardView board;
-	public CheckRequest(GameBoardView board) {
-		this.board = board;
+	public CheckRequest() {
+		GameLogic logic = GameLogic.getInstance();
+		this.board = logic.getGameBoard();
 	}
 	
 	public GameBoardView getBoard() {

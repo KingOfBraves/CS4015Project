@@ -7,7 +7,7 @@ public abstract class GameView implements GameObserver
          model.attach(this);
    }
    
-   protected abstract void displayGameBoard(GameBoardView gameBoard);
+   protected abstract void displayGameBoard();
 
    public void displayMessage(String message) 
    {
@@ -19,7 +19,7 @@ public abstract class GameView implements GameObserver
          int status = model.getGameStatus();
          if (status != GameStatus.illegalMove) {
                GameBoardView board = model.getGameBoard();
-               displayGameBoard(board);
+               displayGameBoard();
                String message = "";
                switch(status) {
                         case GameStatus.gameContinue: 

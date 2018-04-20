@@ -41,7 +41,20 @@ public class GameLogic extends GameSubject
             notifyObservers();
           }
    }
-
+   
+   public int getPlayer(int row, int col) 
+   {
+    return gameBoard.getPlayer(row, col);
+   }
+   
+   public GameMemento createMemento() {
+	   return gameBoard.createMemento();
+   }
+   
+   public void setMemento(GameMemento gm) {
+	   gameBoard.setMemento(gm);
+   }
+   
    public GameBoardView getGameBoard() 
    {
     return gameBoard;

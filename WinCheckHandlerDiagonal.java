@@ -5,7 +5,7 @@ public class WinCheckHandlerDiagonal extends WinCheckHandler{
 		BoardIterator iter;
 		BoardVisitor visitor;
 		for (int row = 0; row <= 2; row+=2) {
-			iter = new DiagonalIterator(request.getBoard(), row);
+			iter = new DiagonalIterator(row);
 			visitor = new WinVisitor();
 			while(!iter.isDone()) {
 				 visitor.visit(iter.getElement());

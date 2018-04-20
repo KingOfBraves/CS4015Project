@@ -1,6 +1,7 @@
 public class GameReferee 
 {
    private GameBoardView gameBoard;
+   private GameLogic logic = GameLogic.getInstance();
    public int checkLegalMove(int row, int col, int player) 
    {
 	   	 if(row == 3)

@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class GameBoard implements GameBoardView 
 {
    private int[][] board;

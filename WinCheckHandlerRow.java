@@ -5,7 +5,7 @@ public class WinCheckHandlerRow extends WinCheckHandler{
 		BoardIterator iter;
 		BoardVisitor visitor;
 		for (int row = 0; row < 3; row++) {
-			iter = new RowIterator(request.getBoard(), row);
+			iter = new RowIterator(row);
 			visitor = new WinVisitor();
 			while(!iter.isDone()) {
 				 visitor.visit(iter.getElement());

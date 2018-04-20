@@ -5,7 +5,7 @@ public class WinCheckHandlerColumn extends WinCheckHandler{
 		BoardIterator iter;
 		BoardVisitor visitor;
 		for (int col = 0; col < 3; col++) {
-			iter = new ColumnIterator(request.getBoard(), col);
+			iter = new ColumnIterator(col);
 			visitor = new WinVisitor();
 			while(!iter.isDone()) {
 				 visitor.visit(iter.getElement());

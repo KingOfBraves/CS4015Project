@@ -16,6 +16,6 @@ public class CheckingGameStatus {
 	}
 	
 	public int checkStatus() {
-		return behaviour.checkCommand(board);
+		return behaviour.checkCommand();
 	}
 }

@@ -4,10 +4,10 @@ public class DiagonalIterator implements BoardIterator {
 	private int row = 0;
 	private int col = 0;
 	private int opp = 2;
-	private GameBoardView board;
+	private GameLogic logic;
 	
-	public DiagonalIterator(GameBoardView board, int row) {
-		this.board = board;
+	public DiagonalIterator(int row) {
+		logic = GameLogic.getInstance();
 		this.row = row;
 		if (this.row == 2)
 			this.opp = 0;
@@ -33,7 +33,7 @@ public class DiagonalIterator implements BoardIterator {
 
 	@Override
 	public int getElement() {
-		return board.getPlayer(row, col);
+		return logic.getPlayer(row, col);
 	}
 
 }

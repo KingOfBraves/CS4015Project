@@ -3,10 +3,10 @@ public class RowIterator implements BoardIterator {
 
 	private int row = 0;
 	private int col = 0;
-	private GameBoardView board;
+	private GameLogic logic;
 	
-	public RowIterator(GameBoardView board, int row) {
-		this.board = board;
+	public RowIterator(int row) {
+		logic = GameLogic.getInstance();
 		this.row = row;
 	}
 	
@@ -29,7 +29,7 @@ public class RowIterator implements BoardIterator {
 
 	@Override
 	public int getElement() {
-		return board.getPlayer(row, col);
+		return logic.getPlayer(row, col);
 	}
 
 }

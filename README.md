@@ -13,3 +13,4 @@ Tic Tac Toe game made for my Design Patterns and Software Architecture class
 - Chain of Responsibility
 - Strategy
 - Abstract Factory
+- Facade

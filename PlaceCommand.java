@@ -17,14 +17,14 @@ public class PlaceCommand extends GameCommand implements Cloneable{
 	@Override
 	public void execute() {
 		GameLogic model = GameLogic.getInstance();
-		this.gb = (GameBoard) model.getGameBoard();
-		gMemento = gb.createMemento();
+		gMemento = model.createMemento();
 		model.makeMove(inputRow, inputCol, currentPlayer);
 	}
 
 	@Override
 	public void unexecute() {
-		gb.setMemento(gMemento);
+		GameLogic model = GameLogic.getInstance();
+		model.setMemento(gMemento);
 	}
 	
 	public void printContents() {

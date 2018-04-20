@@ -1,9 +1,10 @@
 class CheckTieBehaviour implements CheckBehaviour{
-	public int checkCommand(GameBoardView board) {
+	public int checkCommand() {
+		GameLogic logic = GameLogic.getInstance();
 		for (int row = 0; row < 3; row++) {
             int[] counts = new int[3];
             for (int col = 1; col < 3; col++ ) {
-                  int playerId = board.getPlayer(row, col);
+                  int playerId = logic.getPlayer(row, col);
                   counts[playerId]++;
             }
             for (int i = 0; i < 3; i++) {
@@ -15,7 +16,7 @@ class CheckTieBehaviour implements CheckBehaviour{
       for (int col = 0; col < 3; col++) {
             int[] counts = new int[3];
             for (int row = 1; row < 3; row++ ) {
-                  int playerId = board.getPlayer(row, col);
+                  int playerId = logic.getPlayer(row, col);
                   counts[playerId]++;
             }
             for (int i = 0; i < 3; i++) {
@@ -26,7 +27,7 @@ class CheckTieBehaviour implements CheckBehaviour{
       }
       for (int row = 0; row < 3; row++) {
             int[] counts = new int[3];
-            int playerId = board.getPlayer(row, row);
+            int playerId = logic.getPlayer(row, row);
             counts[playerId]++;
             for (int i = 0; i < 3; i++) {
                   if (counts[0] >= 2) return -1;
@@ -36,7 +37,7 @@ class CheckTieBehaviour implements CheckBehaviour{
       }
       for (int row = 0; row < 3; row++) {
             int[] counts = new int[3];
-            int playerId = board.getPlayer(row, 2-row);
+            int playerId = logic.getPlayer(row, 2-row);
             counts[playerId]++;
             for (int i = 0; i < 3; i++) {
                   if (counts[0] >= 2) return -1;
