@@ -11,7 +11,7 @@ public class GameReferee
    
    public int checkGameStatus() 
    {
-	   	CheckingGameStatus statusCheck = new CheckingGameStatus(gameBoard);
+	   	CheckingGameStatus statusCheck = new CheckingGameStatus();
 	   	statusCheck.setBehaviour(new CheckWinBehaviour());
         int playerId = statusCheck.checkStatus();
         if (playerId == 1) return GameStatus.player1Win;
@@ -25,9 +25,7 @@ public class GameReferee
    public GameReferee(GameBoardView gameBoard) 
 
    {
-
          this.gameBoard = gameBoard;
-
    }
 
 }
